@@ -1,0 +1,41 @@
+.container{
+	display: inline-block;
+	margin: 6px;
+    width: calc(100% - 12px);
+	border: 2px solid #ddd;
+	padding: 0;
+}
+.label-col{
+	width: 30vW;
+	text-align: right;
+}
+.row{
+	padding: 5px;
+	margin: 0;
+}
+.value-col{
+	width: 30vW;
+	text-align: right;
+}
+.unit-col{
+	width: 25vW;
+	
+}
+input{
+	width: 100%;
+	line-height: 14px;
+    text-align: right;
+}
+.table{
+	margin-bottom: 0;
+}
+.history td, th{
+	text-align: right;
+}
+.history td:first-child, th:first-child{
+	text-align: left;
+}
+.entry-button-container{
+	padding: 6px;
+	text-align: center;
+}
