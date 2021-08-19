@@ -21,6 +21,16 @@
 	width: 25vW;
 	
 }
+#refresh-button{
+	position: absolute;
+    top: 10px;
+    right: 10px;
+	width: auto;
+}
+#add-button{
+	position: absolute;
+	right: 10px;
+}
 input{
 	width: 100%;
 	line-height: 14px;
@@ -29,11 +39,22 @@ input{
 .table{
 	margin-bottom: 0;
 }
+table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+}
+.edit-button{
+	margin-left: -10px;
+	margin-right: 6px;
+}
+.history {
+	height: calc(100vH - 323px);
+	overflow: auto;
+}
 .history td, th{
 	text-align: right;
-}
-.history td:first-child, th:first-child{
-	text-align: left;
 }
 .entry-button-container{
 	padding: 6px;
