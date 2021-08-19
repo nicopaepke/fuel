@@ -7,7 +7,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(isset($_GET["id"]) && !empty($_GET["id"])){
 		$sql = "UPDATE refueling SET odometer = ?, refueling_date = ?, refueled = ?, deleted = ? WHERE id = ?";
 		if($stmt = mysqli_prepare($link, $sql)){
-			mysqli_stmt_bind_param($stmt, "dsdd", $param_odo, $param_date, $param_refueled, $param_deleted, $param_id);
+			mysqli_stmt_bind_param($stmt, "dsddd", $param_odo, $param_date, $param_refueled, $param_deleted, $param_id);
 			$param_id = $_GET['id'];
 			$param_date = $_POST['date'];
 			$param_odo = $_POST['odo'];
@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			mysqli_stmt_close($stmt);
 		}
 	}else{
-		$sql = "INSERT INTO refueling ( odometer, refueling_date, refueled, delete) VALUES (?, ?, ?)";
+		$sql = "INSERT INTO refueling ( odometer, refueling_date, refueled) VALUES (?, ?, ?)";
 		if($stmt = mysqli_prepare($link, $sql)){
 			mysqli_stmt_bind_param($stmt, "dsd", $param_odo, $param_date, $param_refueled);
 			$param_date = $_POST['date'];
@@ -86,14 +86,14 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
 					}
 				?>
 				</div>
-				<form action="
 					<?php 
+					echo '<form action="';
 						echo htmlspecialchars($_SERVER["PHP_SELF"]);
 						if( isset($_GET["id"]) && !empty($_GET["id"])){
 							echo '?id=' . $_GET["id"];
 						}
+					echo '"method="post">';
 					?>
-					"method="post">
 					
 					<div class="form-group">
 						<label for="date">Datum</label>
@@ -109,7 +109,7 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
 						<input type="number" name="refueled" class="form-control" 
 							value="<?php echo $refueled ?>" step=".1" required="true">
                     </div>
-					<div class="form-group">
+					<div <?php if( !isset($_GET["id"]) || empty($_GET["id"])){ echo 'style="display: none"';} ?> class="form-group">
 						<label for="deleted">Status</label>
 						<select value="0" class="form-control" name="deleted" required="true">
 							<option value="0" <?php if( $deleted == 0) { echo 'selected';} ?> >aktiv</option>
