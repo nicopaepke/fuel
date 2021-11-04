@@ -15,14 +15,16 @@
 		}  
 	}
 ?>
-<html> 
+<html>
+
 <head>
   <title>Login</title>    
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head> 
+
+</head>
 <body>
- 
+
 <?php 
 if(isset($errorMessage)) {
     echo $errorMessage;
@@ -44,8 +46,10 @@ if(isset($errorMessage)) {
 					 
 					<div class="form-group">
 						<label for="password">Passwort</label>
-						<input type="password" name="password" class="form-control" 
-							value="">
+						<div>
+							<input id="password-field" style="margin-right: -4px; display: inline-block" type="password" name="password" class="form-control" value="">
+							<i id="password-toggle" style="cursor: pointer; display: inline-block; margin-left: -30px;" class="glyphicon glyphicon-eye-close"></i>
+						</div>
                     </div>
 					 
 					<input class="btn btn-primary" type="submit" value="Login">
@@ -55,4 +59,18 @@ if(isset($errorMessage)) {
 	</div>
 </div>
 </body>
+
+<script>
+const togglePassword = document.querySelector('#password-toggle');
+const password = document.querySelector('#password-field');
+togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye / eye slash icon
+    this.classList.toggle('glyphicon-eye-open');
+	this.classList.toggle('glyphicon-eye-close');
+});
+</script>
+
 </html>
